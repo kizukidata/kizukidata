@@ -1,59 +1,69 @@
 # Kizuki
 
-Apify Actors that turn public pages into rows with named fields: LinkedIn jobs and company pages, Google News, Telegram and YouTube channels, note articles, TikTok ads, YouTube captions, PDFs and web pages.
+Apify Actors that turn public pages and open data into rows with named fields: LinkedIn job and company pages, work-visa employer data, EU public tenders, news and social posts (Google News, Telegram, Bluesky, YouTube), note.com articles, TikTok ads, podcast sponsors, and YouTube captions, PDFs and web pages as Markdown.
 
-Kizuki is an independent developer on Apify Store. The Actors are unofficial and not affiliated with or endorsed by Apify, LinkedIn, Google, YouTube, Telegram, TikTok or note.
+Kizuki is an independent developer on Apify Store. The Actors are unofficial and not affiliated with or endorsed by Apify, LinkedIn, Google, YouTube, Telegram, Bluesky, TikTok or note, or by any other site or public body whose data they read.
 
-You pay for rows that carry data. A run that finds nothing has no per-row charge, and a row that only records a failure stays in the dataset so you can see what happened without being charged. Apify's run start fee applies to every run: USD 0.00005 per GB of memory (one event per GB, minimum one event). Each Actor's page shows its default memory.
+You pay for rows that carry data. A run that finds nothing has no per-row charge. A failure is not charged per row either: depending on the Actor, it shows up as a row with the reason, in the run's OUTPUT record, or in the run's status message. Apify's run start fee applies to every run: USD 0.00005 per GB of memory (one event per GB, minimum one event). Each Actor's page shows its default memory.
 
 - Site: [kizukidata.com](https://kizukidata.com)
 - Actors on Apify Store: [apify.com/kizukidata](https://apify.com/kizukidata)
 - Code examples: [kizukidata/examples](https://github.com/kizukidata/examples)
 - X: [@kizukidata](https://x.com/kizukidata)
 - Discord: [discord.gg/QdmUHkJSm8](https://discord.gg/QdmUHkJSm8)
-- Qiita (Japanese articles): [@kizukidata](https://qiita.com/kizukidata)
+- Qiita (articles in Japanese): [@kizukidata](https://qiita.com/kizukidata)
 - Contact: contact@kizukidata.com
 
 ## Actors
 
-Prices are the Free tier, per returned row, from the Pricing tab of each Actor (November 2026). A higher Apify plan lowers the row price.
+Prices are the Free-tier price per 1,000 returned rows, from each Actor's Pricing tab on 12 November 2026. A higher Apify plan lowers the row price.
 
-### Hiring
+### Hiring and work visas
 
-| Actor | One row is | Per row |
+| Actor | One row is | Per 1,000 rows |
 |---|---|---|
-| [LinkedIn Jobs Scraper](https://apify.com/kizukidata/linkedin-jobs-feed) | a public LinkedIn job posting: title, company, location, posted date, pay range, seniority, applicants | $0.0012 |
-| [LinkedIn Company Scraper & Change Monitor](https://apify.com/kizukidata/linkedin-company-monitor) | a company page, or with `onlyChanges` a company whose fields moved, with the old and new value | $0.0020 |
+| [LinkedIn Jobs Scraper](https://apify.com/kizukidata/linkedin-jobs-feed) | a public LinkedIn job posting: title, company, location, posted date, pay range, seniority, applicants | $0.33 |
+| [LinkedIn Company Scraper & Change Monitor](https://apify.com/kizukidata/linkedin-company-monitor) | a company page, or with `onlyChanges` a company whose fields moved, with the old and new value | $1.29 |
+| [UK Visa Sponsor Jobs Scraper](https://apify.com/kizukidata/uk-visa-sponsor-jobs) | a UK job ad from a company job board you name, matched to the Home Office sponsor register: visa routes, rating | $0.50 |
+| [Canada LMIA Employers Scraper](https://apify.com/kizukidata/canada-lmia-employers) | an employer with a positive LMIA, by occupation, province and program stream, from Canada's open data | $0.65 |
 
-With `onlyNewItems` on jobs and `onlyChanges` on company pages, a daily run returns the postings and the profile changes since the previous run.
+For the two LinkedIn Actors, with `onlyNewItems` on jobs and `onlyChanges` on company pages, a daily run returns the postings and the profile changes since the previous run.
 
-### News and channels
+### Public tenders
 
-| Actor | One row is | Per row |
+| Actor | One row is | Per 1,000 rows |
 |---|---|---|
-| [Google News Scraper](https://apify.com/kizukidata/google-news-feed) | an article: title, outlet, publication time, the outlet's own article URL | $0.0017 |
-| [Telegram Channel Scraper](https://apify.com/kizukidata/telegram-channel-feed) | a public channel post: text, time, views, reactions, media | $0.0020 |
-| [YouTube Channel Scraper](https://apify.com/kizukidata/youtube-channel-monitor) | a channel, a video or a comment | $0.0011 |
+| [EU Tenders Scraper (TED)](https://apify.com/kizukidata/eu-tenders) | an EU tender notice: buyer, CPV codes, deadline, estimated value when published, links to the notice | $0.80 |
+
+### News and social
+
+| Actor | One row is | Per 1,000 rows |
+|---|---|---|
+| [Google News Scraper](https://apify.com/kizukidata/google-news-feed) | an article: title, outlet, publication time, the outlet's own article URL | $1.36 |
+| [Telegram Channel Scraper](https://apify.com/kizukidata/telegram-channel-feed) | a public channel post: text, time, views, reactions, media | $0.28 |
+| [YouTube Channel Scraper](https://apify.com/kizukidata/youtube-channel-monitor) | a channel, a video or a comment | $0.24 |
+| [Bluesky Monitor](https://apify.com/kizukidata/bluesky-monitor) | a Bluesky post found by keyword or account, or an account's follower counts with the change since the last run | $0.73 |
 
 ### Japan
 
-| Actor | One row is | Per row |
+| Actor | One row is | Per 1,000 rows |
 |---|---|---|
-| [note.com Scraper](https://apify.com/kizukidata/note-articles-feed) | a note.com article: title, likes, comments, hashtags, paid price | $0.0020 |
+| [note.com Scraper](https://apify.com/kizukidata/note-articles-feed) | a note.com article: title, likes, comments, hashtags, paid price | $1.21 |
 
-### Ads
+### Ads and sponsors
 
-| Actor | One row is | Per row |
+| Actor | One row is | Per 1,000 rows |
 |---|---|---|
-| [TikTok Ads Library Scraper](https://apify.com/kizukidata/tiktok-ads-monitor) | an ad in the EU TikTok Ad Library, marked NEW, ACTIVE, SCALING or STOPPED against your previous run | $0.0018 |
+| [TikTok Ads Library Scraper](https://apify.com/kizukidata/tiktok-ads-monitor) | an ad in the EU TikTok Ad Library, marked NEW, ACTIVE, SCALING or STOPPED against your previous run | $0.33 |
+| [Podcast Sponsors](https://apify.com/kizukidata/podcast-sponsors) | a sponsor named in a podcast episode's show notes: name, domain, promo code, the evidence line | $3.20 |
 
 ### For LLMs and RAG
 
-| Actor | One row is | Per row |
+| Actor | One row is | Per 1,000 rows |
 |---|---|---|
-| [YouTube Transcript Scraper](https://apify.com/kizukidata/youtube-transcripts) | a video's captions: chapter-aware Markdown, timed segments, RAG chunks | $0.0020 |
-| [PDF to Markdown Extractor](https://apify.com/kizukidata/pdf-to-markdown) | a PDF as page-numbered Markdown (`## Page N`) | $0.0022 |
-| [URL to Markdown](https://apify.com/kizukidata/url-to-markdown) | a page's main content as Markdown, menus and footers dropped | $0.0014 |
+| [YouTube Transcript Scraper](https://apify.com/kizukidata/youtube-transcripts) | a video's captions: chapter-aware Markdown, timed segments, RAG chunks | $1.00 |
+| [PDF to Markdown Extractor](https://apify.com/kizukidata/pdf-to-markdown) | a PDF as page-numbered Markdown (`## Page N`) | $1.60 |
+| [URL to Markdown](https://apify.com/kizukidata/url-to-markdown) | a page's main content as Markdown, menus and footers dropped | $0.33 |
 
 Each Actor's page on Apify Store has its input fields, its output fields and its price. A scan without a text layer, a page that needs JavaScript, a blocked job page and an unknown channel are all reported with the reason and cost nothing per item.
 
@@ -97,8 +107,8 @@ curl -s -X POST "https://api.apify.com/v2/acts/kizukidata~url-to-markdown/run-sy
 
 ## 日本語の要点
 
-- Kizuki は Apify Store で公開データを 1 行 1 件の表にする Actor を作っています。公開中の Actor は、採用・ニュース・日本（note）・広告・LLM 向け（字幕・PDF・Web）に分けています。
-- 値段は返した行だけ（Free の段、2026-11 の時点）。入力を処理して 0 件だったときは 1 件あたりの課金はありません。失敗だけを記録する行もデータセットに残りますが、課金されません。走らせるたびに Apify の起動料（1 GB ごとに USD 0.00005、1 GB 未満でも 1 回分。既定のメモリは各 Actor の頁）がかかります。
+- Kizuki は Apify Store で公開データを 1 行 1 件の表にする Actor を作っています。公開中の Actor は、採用とビザ・公共入札・ニュースと SNS・日本（note）・広告とスポンサー・LLM 向け（字幕・PDF・Web）に分けています。
+- 課金は返した行の数で決まります（表は Free の段の 1,000 行あたり、2026-11-12 の時点。上の段のプランほど 1 行の値段は下がります）。入力を処理して 0 件だったときは 1 件あたりの課金はありません。失敗も 1 件あたりの課金はありません。失敗の理由は、Actor によって、データセットの行、run の OUTPUT の記録、run の状態の文のどれかに出ます。走らせるたびに Apify の起動料（1 GB ごとに USD 0.00005、1 GB 未満でも 1 回分。既定のメモリは各 Actor の頁）がかかります。
 - MCP は 6 つのまとめを公式の MCP Registry に置いています。`https://mcp.apify.com?tools=...` の形で、使う Actor だけを AI エージェントに読み込ませられます。
-- 非公式です。Apify・LinkedIn・Google・YouTube・Telegram・TikTok・note とは関係なく、承認も受けていません。
+- 非公式です。Apify・LinkedIn・Google・YouTube・Telegram・Bluesky・TikTok・note、そのほかデータを読む先のサイトや公的機関とは関係なく、承認も受けていません。
 - 使い方の例（curl・Python・JavaScript・MCP・n8n）は kizukidata/examples にあります（MIT）。
