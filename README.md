@@ -11,6 +11,7 @@ You pay for rows that carry data. A run that finds nothing has no per-row charge
 - Code examples: [kizukidata/examples](https://github.com/kizukidata/examples)
 - X: [@kizukidata](https://x.com/kizukidata)
 - Discord: [discord.gg/QdmUHkJSm8](https://discord.gg/QdmUHkJSm8)
+- Qiita (Japanese articles): [@kizukidata](https://qiita.com/kizukidata)
 - Contact: contact@kizukidata.com
 
 ## Actors
@@ -60,17 +61,20 @@ Each Actor's page on Apify Store has its input fields, its output fields and its
 
 ## For AI agents (MCP)
 
-Three bundles are listed in the official MCP Registry. Any client that accepts a remote MCP URL works: Claude Desktop, Claude Code, Cursor, VS Code. On the first connection your browser opens so you can sign in to Apify.
+Six bundles are listed in the official MCP Registry. Any client that accepts a remote MCP URL works: Claude Desktop, Claude Code, Cursor, VS Code. On the first connection your browser opens so you can sign in to Apify.
 
 | Bundle | Actors in it | URL |
 |---|---|---|
 | Hiring Signals | `linkedin-jobs-feed`, `linkedin-company-monitor` | `https://mcp.apify.com?tools=kizukidata/linkedin-jobs-feed,kizukidata/linkedin-company-monitor` |
 | News Monitoring | `google-news-feed`, `youtube-channel-monitor`, `telegram-channel-feed` | `https://mcp.apify.com?tools=kizukidata/google-news-feed,kizukidata/youtube-channel-monitor,kizukidata/telegram-channel-feed` |
 | RAG Ingest | `youtube-transcripts`, `pdf-to-markdown`, `url-to-markdown` | `https://mcp.apify.com?tools=kizukidata/youtube-transcripts,kizukidata/pdf-to-markdown,kizukidata/url-to-markdown` |
+| EU Tenders | `eu-tenders` | `https://mcp.apify.com?tools=kizukidata/eu-tenders` |
+| Social Monitoring | `bluesky-monitor`, `telegram-channel-feed`, `note-articles-feed` | `https://mcp.apify.com?tools=kizukidata/bluesky-monitor,kizukidata/telegram-channel-feed,kizukidata/note-articles-feed` |
+| Work Visa Data | `uk-visa-sponsor-jobs`, `canada-lmia-employers` | `https://mcp.apify.com?tools=kizukidata/uk-visa-sponsor-jobs,kizukidata/canada-lmia-employers` |
 
 For one Actor: `https://mcp.apify.com?tools=kizukidata/url-to-markdown`.
 
-Registry names: `io.github.kizukidata/hiring-signals`, `io.github.kizukidata/news-monitoring`, `io.github.kizukidata/rag-ingest`.
+Registry names: `io.github.kizukidata/hiring-signals`, `io.github.kizukidata/news-monitoring`, `io.github.kizukidata/rag-ingest`, `io.github.kizukidata/eu-tenders`, `io.github.kizukidata/social-monitoring`, `io.github.kizukidata/work-visa-data`.
 
 Claude Code:
 
@@ -95,6 +99,6 @@ curl -s -X POST "https://api.apify.com/v2/acts/kizukidata~url-to-markdown/run-sy
 
 - Kizuki は Apify Store で公開データを 1 行 1 件の表にする Actor を作っています。公開中の Actor は、採用・ニュース・日本（note）・広告・LLM 向け（字幕・PDF・Web）に分けています。
 - 値段は返した行だけ（Free の段、2026-11 の時点）。入力を処理して 0 件だったときは 1 件あたりの課金はありません。失敗だけを記録する行もデータセットに残りますが、課金されません。走らせるたびに Apify の起動料（1 GB ごとに USD 0.00005、1 GB 未満でも 1 回分。既定のメモリは各 Actor の頁）がかかります。
-- MCP は 3 つのまとめを公式の MCP Registry に置いています。`https://mcp.apify.com?tools=...` の形で、使う Actor だけを AI エージェントに読み込ませられます。
+- MCP は 6 つのまとめを公式の MCP Registry に置いています。`https://mcp.apify.com?tools=...` の形で、使う Actor だけを AI エージェントに読み込ませられます。
 - 非公式です。Apify・LinkedIn・Google・YouTube・Telegram・TikTok・note とは関係なく、承認も受けていません。
 - 使い方の例（curl・Python・JavaScript・MCP・n8n）は kizukidata/examples にあります（MIT）。
