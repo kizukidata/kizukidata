@@ -1,8 +1,8 @@
 # Kizuki
 
-Apify Actors that turn public pages and open data into rows with named fields: LinkedIn job and company pages, work-visa employer data, EU public tenders, news and social posts (Google News, Telegram, Bluesky, YouTube, WeChat Official Accounts), note.com articles, TikTok ads, podcast sponsors, public MCP server directories, and YouTube captions, PDFs and web pages as Markdown.
+Apify Actors that turn public pages and open data into rows with named fields: LinkedIn job and company pages, work-visa employer data, EU public tenders, news and social posts (Google News, Telegram, Bluesky, YouTube, WeChat Official Accounts), note.com articles, TikTok ads, podcast sponsors, online stores' UCP profiles, public MCP server directories, and YouTube captions, PDFs and web pages as Markdown.
 
-Kizuki is an independent developer on Apify Store. The Actors are unofficial and not affiliated with or endorsed by Apify, LinkedIn, Google, YouTube, Telegram, Bluesky, TikTok, note, Tencent, the MCP project, Smithery, the maintainers of the awesome-mcp-servers list, or any other site or public body whose data they read.
+Kizuki is an independent developer on Apify Store. The Actors are unofficial and not affiliated with or endorsed by Apify, LinkedIn, Google, YouTube, Telegram, Bluesky, TikTok, note, Tencent, the UCP project, the MCP project, Smithery, the maintainers of the awesome-mcp-servers list, or any other site or public body whose data they read.
 
 You pay for rows that carry data. A run that finds nothing has no per-row charge. A failure is not charged per row either: depending on the Actor, it shows up as a row with the reason, in the run's OUTPUT record, or in the run's status message. Apify's run start fee applies to every run: USD 0.00005 per GB of memory (one event per GB, minimum one event). Each Actor's page shows its default memory.
 
@@ -58,6 +58,12 @@ For the two LinkedIn Actors, with `onlyNewItems` on jobs and `onlyChanges` on co
 | [TikTok Ads Library Scraper](https://apify.com/kizukidata/tiktok-ads-monitor) | an ad in the EU TikTok Ad Library, marked NEW, ACTIVE, SCALING or STOPPED against your previous run | $0.33 |
 | [Podcast Sponsors](https://apify.com/kizukidata/podcast-sponsors) | a sponsor named in a podcast episode's show notes: name, domain, promo code, the evidence line | $3.20 |
 
+### E-commerce and AI agents
+
+| Actor | One row is | Per 1,000 rows |
+|---|---|---|
+| [UCP Profile Checker](https://apify.com/kizukidata/ucp-readiness) | an online store checked for a Universal Commerce Protocol (UCP) profile: version, capabilities, payment handlers, MCP endpoint, changes since the last run | $2.00 per 1,000 stores with a profile; other rows free |
+
 ### For LLMs and RAG
 
 | Actor | One row is | Per 1,000 rows |
@@ -73,7 +79,7 @@ Each Actor's page on Apify Store has its input fields, its output fields and its
 
 ## For AI agents (MCP)
 
-Seven bundles are listed in the official MCP Registry. Any client that accepts a remote MCP URL works: Claude Desktop, Claude Code, Cursor, VS Code. On the first connection your browser opens so you can sign in to Apify.
+Eight bundles are listed in the official MCP Registry. Any client that accepts a remote MCP URL works: Claude Desktop, Claude Code, Cursor, VS Code. On the first connection your browser opens so you can sign in to Apify.
 
 | Bundle | Actors in it | URL |
 |---|---|---|
@@ -84,10 +90,11 @@ Seven bundles are listed in the official MCP Registry. Any client that accepts a
 | Social Monitoring | `bluesky-monitor`, `telegram-channel-feed`, `note-articles-feed`, `wechat-article-reader` | `https://mcp.apify.com?tools=kizukidata/bluesky-monitor,kizukidata/telegram-channel-feed,kizukidata/note-articles-feed,kizukidata/wechat-article-reader` |
 | Work Visa Data | `uk-visa-sponsor-jobs`, `canada-lmia-employers` | `https://mcp.apify.com?tools=kizukidata/uk-visa-sponsor-jobs,kizukidata/canada-lmia-employers` |
 | MCP Server Directory | `mcp-server-directory` | `https://mcp.apify.com?tools=kizukidata/mcp-server-directory` |
+| UCP Profile Checker | `ucp-readiness` | `https://mcp.apify.com?tools=kizukidata/ucp-readiness` |
 
 For one Actor: `https://mcp.apify.com?tools=kizukidata/url-to-markdown`.
 
-Registry names: `io.github.kizukidata/hiring-signals`, `io.github.kizukidata/news-monitoring`, `io.github.kizukidata/rag-ingest`, `io.github.kizukidata/eu-tenders`, `io.github.kizukidata/social-monitoring`, `io.github.kizukidata/work-visa-data`, `io.github.kizukidata/mcp-server-directory`.
+Registry names: `io.github.kizukidata/hiring-signals`, `io.github.kizukidata/news-monitoring`, `io.github.kizukidata/rag-ingest`, `io.github.kizukidata/eu-tenders`, `io.github.kizukidata/social-monitoring`, `io.github.kizukidata/work-visa-data`, `io.github.kizukidata/mcp-server-directory`, `io.github.kizukidata/ucp-readiness`.
 
 Claude Code:
 
@@ -110,8 +117,8 @@ curl -s -X POST "https://api.apify.com/v2/acts/kizukidata~url-to-markdown/run-sy
 
 ## 日本語の要点
 
-- Kizuki は Apify Store で公開データを 1 行 1 件の表にする Actor を作っています。公開中の Actor は、採用とビザ・公共入札・ニュースと SNS（WeChat の公式アカウントの記事を含む）・日本（note）・広告とスポンサー・LLM 向け（字幕・PDF・Web・公開の MCP サーバーの一覧）に分けています。
-- 課金は返した行の数で決まります（表は Free の段の 1,000 行あたり、2026-11-13 の時点。上の段のプランほど 1 行の値段は下がります）。入力を処理して 0 件だったときは 1 件あたりの課金はありません。失敗も 1 件あたりの課金はありません。失敗の理由は、Actor によって、データセットの行、run の OUTPUT の記録、run の状態の文のどれかに出ます。走らせるたびに Apify の起動料（1 GB ごとに USD 0.00005、1 GB 未満でも 1 回分。既定のメモリは各 Actor の頁）がかかります。
-- MCP は 7 つのまとめを公式の MCP Registry に置いています。`https://mcp.apify.com?tools=...` の形で、使う Actor だけを AI エージェントに読み込ませられます。
-- 非公式です。Apify・LinkedIn・Google・YouTube・Telegram・Bluesky・TikTok・note・Tencent・MCP のプロジェクト・Smithery・awesome-mcp-servers の管理者、そのほかデータを読む先のサイトや公的機関とは関係なく、承認も受けていません。
+- Kizuki は Apify Store で公開データを 1 行 1 件の表にする Actor を作っています。公開中の Actor は、採用とビザ・公共入札・ニュースと SNS（WeChat の公式アカウントの記事を含む）・日本（note）・広告とスポンサー・EC と AI エージェント（ネットの店の UCP のプロフィールの確かめ）・LLM 向け（字幕・PDF・Web・公開の MCP サーバーの一覧）に分けています。
+- 課金は返した行の数で決まります（表は Free の段の 1,000 行あたり、2026-11-13 の時点。上の段のプランほど 1 行の値段は下がります。UCP の確かめは、プロフィールを返した店の分だけ）。入力を処理して 0 件だったときは 1 件あたりの課金はありません。失敗も 1 件あたりの課金はありません。失敗の理由は、Actor によって、データセットの行、run の OUTPUT の記録、run の状態の文のどれかに出ます。走らせるたびに Apify の起動料（1 GB ごとに USD 0.00005、1 GB 未満でも 1 回分。既定のメモリは各 Actor の頁）がかかります。
+- MCP は 8 つのまとめを公式の MCP Registry に置いています。`https://mcp.apify.com?tools=...` の形で、使う Actor だけを AI エージェントに読み込ませられます。
+- 非公式です。Apify・LinkedIn・Google・YouTube・Telegram・Bluesky・TikTok・note・Tencent・UCP のプロジェクト・MCP のプロジェクト・Smithery・awesome-mcp-servers の管理者、そのほかデータを読む先のサイトや公的機関とは関係なく、承認も受けていません。
 - 使い方の例（curl・Python・JavaScript・MCP・n8n）は kizukidata/examples にあります（MIT）。
